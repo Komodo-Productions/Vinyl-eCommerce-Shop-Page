@@ -1,0 +1,256 @@
+/* app/Login.module.css */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000; /* Fondo negro por si el video no carga */
+}
+
+
+/* Main Content Styles */
+.main {
+  flex-grow: 1;
+  position: relative;
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  overflow: hidden; /* Evita scroll innecesario */
+}
+
+.videoContainer {
+  position: fixed; /* Cambiado a fixed para mejor cobertura */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-height: 100vh; /* Asegura que cubra toda la altura */
+}
+
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: #000000;
+  opacity: 0; /* Reducido para mejor visibilidad */
+}
+
+/* Fallback background if video doesn't load */
+.videoFallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #4c1d95 0%, #1e3a8a 50%, #000000 100%);
+  min-height: 100vh;
+}
+
+/* Login Form Container */
+.formContainer {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Ocupa toda la altura de la ventana */
+  padding: 1rem;
+}
+
+.loginForm {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Form Header */
+.formHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.formTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.formSubtitle {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+/* Form Styles */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input:hover {
+  border-color: #9ca3af;
+}
+
+/* Submit Button */
+.submitButton {
+  width: 100%;
+  background-color: #000000;
+  color: #ffffff;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.submitButton:hover {
+  background-color: #374151;
+  transform: translateY(-1px);
+}
+
+.submitButton:active {
+  transform: translateY(0);
+}
+
+.submitButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.dividerLine {
+  flex-grow: 1;
+  border-top: 1px solid #e5e7eb;
+}
+
+.dividerText {
+  margin: 0 1rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Register Section */
+.registerSection {
+  text-align: center;
+}
+
+.registerText {
+  color: #6b7280;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.registerButton {
+  display: inline-block;
+  width: 100%;
+  border: 2px solid #e5e7eb;
+  color: #374151;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-align: center;
+  background: #ffffff;
+}
+
+.registerButton:hover {
+  border-color: #000000;
+  color: #000000;
+  background: #f8f9fa;
+}
+
+.registerButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Forgot Password Link */
+.forgotPassword {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.forgotPasswordLink {
+  color: #6b7280;
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgotPasswordLink:hover {
+  color: #000000;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .loginForm {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+  
+  .formTitle {
+    font-size: 1.75rem;
+  }
+  
+  .formContainer {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginForm {
+    padding: 1.5rem 1rem;
+  }
+  
+  .formTitle {
+    font-size: 1.5rem;
+  }
+}
