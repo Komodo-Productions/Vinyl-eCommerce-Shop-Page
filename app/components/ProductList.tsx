@@ -26,39 +26,52 @@ export default function ProductList() {
         setLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
-  if (loading) return <p>Cargando productos...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading)
+    return (
+      <p data-testid="loading-products">Cargando productos...</p>
+    );
+
+  if (error)
+    return (
+      <p data-testid="error-products">{error}</p>
+    );
 
   return (
-            <div className="grid-wrapper-copy" >
-                {products.map((p) => (
-                    <div className="w-dyn-item" key={p.id_product}>
-                        <Link href={`/product/${p.id_product}`} className="wrapper_link-card_product w-inline-block">
-                          <div className="card-product">
-                            <div className="label">
-                              <h6>{p.name}</h6>
-                              {/*<div className="display-flex_horizontal_center text-gray">
-                                <p className="margin-right-4px caption">Price</p>
-                                <p className="margin-right-4px caption">${p.price}</p>
-                              </div>*/}
-                              <div className="display-flex_horizontal_center text-gray">
-                                <p className="margin-right-4px caption">{p.artist}</p>
-                              </div>
-                            </div>
-                            <div className="card_img">
-                              <img
-                                src="https://vinyl.sonymusic.com/cdn/shop/files/X3LPAC22.jpg?v=1726500451"
-                                className="img_100x100-fit_cover"
-                              />
-                            </div>
-                          </div>
-                        </Link>
-                    </div>
-                ))}
+    <div className="grid-wrapper-copy" data-testid="product-list">
+      {products.map((p) => (
+        <div
+          className="w-dyn-item"
+          key={p.id_product}
+          data-testid={`product-card-${p.id_product}`}
+        >
+          <Link
+            href={`/products/${p.id_product}`}
+            className="wrapper_link-card_product w-inline-block"
+            data-testid="product-link"
+          >
+            <div className="card-product" data-testid="product-card">
+              <div className="label">
+                <h6 data-testid="product-name">{p.name}</h6>
+                <div className="display-flex_horizontal_center text-gray">
+                  <p className="margin-right-4px caption" data-testid="product-artist">
+                    {p.artist}
+                  </p>
+                </div>
+              </div>
+              <div className="card_img" data-testid="product-image">
+                <img
+                  src="https://vinyl.sonymusic.com/cdn/shop/files/X3LPAC22.jpg?v=1726500451"
+                  className="img_100x100-fit_cover"
+                  alt={p.name}
+                />
+              </div>
             </div>
+          </Link>
+        </div>
+      ))}
+    </div>
   );
 }

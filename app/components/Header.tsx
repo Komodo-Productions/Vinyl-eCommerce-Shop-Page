@@ -24,10 +24,10 @@ const Header1: React.FC = () => {
   if (isLoading) return null; // evita parpadeo mientras se verifica la sesión
 
   return (
-    <div data-animation="default" className="navbar w-nav" role="banner" data-duration="400">
+    <div data-animation="default" className="navbar w-nav" role="banner" data-duration="400" data-testid="header-container">
       <div className="nav-content-grid">
-        <div className="nav-link-left">
-          <div className="menu-button-lower-desktop w-nav-button" onClick={toggleMenu}>
+        <div className="nav-link-left" data-testid="header-left">
+          <div className="menu-button-lower-desktop w-nav-button" onClick={toggleMenu} data-testid="menu-toggle">
             <div className={`hamburger ${menuOpen ? "active" : ""}`}>
               <span></span>
               <span></span>
@@ -44,7 +44,7 @@ const Header1: React.FC = () => {
             </div>
 
             <aside className="link-block-wrap">
-              <a href="#contacts-SECTION" className="links w-inline-block">
+              <a href="#contacts-SECTION" className="links w-inline-block" data-testid="contact-link">
                 <div className="link-text">Contact</div>
                 <div className="link-text">Contact</div>
               </a>
@@ -54,10 +54,10 @@ const Header1: React.FC = () => {
           <div className="plug-w100"></div>
         </div>
 
-        <div className="nav-link-right">
+        <div className="nav-link-right" data-testid="header-right">
           <div className="plug-w100"></div>
 
-          <div className="cart-button-lower-desktop">
+          <div className="cart-button-lower-desktop" data-testid="cart-icon">
             <img
               src="https://cdn.prod.website-files.com/6400d82951450021c2d1eb7b/649c824defd18fb4cfaba780_svg.svg"
               loading="lazy"
@@ -86,7 +86,7 @@ const Header1: React.FC = () => {
               </div>
             ) : (
               <div className="link-block-wrap">
-                <a href="/login" className="links w-inline-block">
+                <a href="/login" className="links w-inline-block" data-testid="login-link">
                   <div className="link-text">Sign in</div>
                   <div className="link-text">Sign in</div>
                 </a>
@@ -118,6 +118,7 @@ const Header1: React.FC = () => {
                 onClick={closeMenu}
                 href="/login"
                 className="nav-link-copy-100 burger_mobile w-nav-link"
+                data-testid="login-link-mobile"
               >
                 Sign in
               </a>

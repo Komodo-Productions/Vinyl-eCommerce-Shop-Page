@@ -2,7 +2,7 @@
 import "../style2.css";
 import React, { useState } from "react";
 import CheckOut from "./CheckOut";
-import { useAuth } from "@/app/context/AuthContext"; 
+import { useAuth } from "@/app/context/AuthContext";
 
 interface CheckoutButtonProps {
   product: { name: string; price: number };
@@ -10,8 +10,8 @@ interface CheckoutButtonProps {
 }
 
 const CheckoutButton = ({ product, quantity }: CheckoutButtonProps) => {
-  const { user, isLoading } = useAuth(); 
-  const isLoggedIn = !!user; 
+  const { user, isLoading } = useAuth();
+  const isLoggedIn = !!user;
   const [showCheckout, setShowCheckout] = useState(false);
 
   const handleCheckout = () => {
@@ -21,7 +21,6 @@ const CheckoutButton = ({ product, quantity }: CheckoutButtonProps) => {
       quantity: quantity.toString(),
     }).toString();
 
-
     window.history.pushState({}, "", `/checkout?${query}`);
     setShowCheckout(true);
   };
@@ -30,7 +29,7 @@ const CheckoutButton = ({ product, quantity }: CheckoutButtonProps) => {
 
   if (isLoading) {
     return (
-      <button disabled>
+      <button disabled data-testid="checkout-loading">
         <a className="primary_button w-inline-block">
           <div className="wrap-button_text">
             <div className="button_text">Loading...</div>
@@ -42,7 +41,11 @@ const CheckoutButton = ({ product, quantity }: CheckoutButtonProps) => {
 
   return (
     <>
-      <button onClick={handleCheckout}>
+      <button
+        onClick={handleCheckout}
+        data-testid="buy-button"
+        disabled={!isLoggedIn && !isLoading}
+      >
         <a className="primary_button w-inline-block">
           <div className="wrap-button_text">
             <div className="button_text">Buy</div>
@@ -51,9 +54,13 @@ const CheckoutButton = ({ product, quantity }: CheckoutButtonProps) => {
       </button>
 
       {showCheckout && (
-        <div className="overlay">
-          <div className="overlay-content">
-            <button className="close-button" onClick={handleClose}>
+        <div className="overlay" data-testid="checkout-overlay">
+          <div className="overlay-content" data-testid="checkout-modal">
+            <button
+              className="close-button"
+              onClick={handleClose}
+              data-testid="close-checkout"
+            >
               ✕
             </button>
             <CheckOut onClose={handleClose} />
