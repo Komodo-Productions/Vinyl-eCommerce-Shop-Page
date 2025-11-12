@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/app/context/AuthContext";
 import styles from "../login/Login.module.css";
@@ -9,6 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const router = useRouter();
 
   const { login } = useAuth();
 
@@ -33,8 +35,9 @@ const Login = () => {
 
       login(data.user);
 
-      alert("Inicio de sesión exitoso");
-      window.location.href = "/shop";
+      //alert("Inicio de sesión exitoso");
+      router.push("/");
+
       //console.log("Token:", data.token);
 
     } catch (err: any) {
@@ -62,7 +65,7 @@ const Login = () => {
               <p className={styles.formSubtitle}>Welcome back to Komodo Productions</p>
             </div>
 
-            <form onSubmit={handleSubmit} className={styles.form}>
+            <form onSubmit={handleSubmit} className={styles.form} data-testid="login-form">
               <div className={styles.formGroup}>
                 <label htmlFor="email" className={styles.label}>
                   Correo electrónico
@@ -75,6 +78,7 @@ const Login = () => {
                   className={styles.input}
                   placeholder="Enter your email"
                   required
+                  data-testid = "email-input"
                 />
               </div>
 
@@ -90,15 +94,17 @@ const Login = () => {
                   className={styles.input}
                   placeholder="Enter your password"
                   required
+                  data-testid="password-input"
                 />
               </div>
 
-              {error && <p style={{ color: "red" }}>{error}</p>}
+              {error && <p style={{ color: "red" }} data-testid="login-error">{error}</p>}
 
               <button
                 type="submit"
                 className={styles.submitButton}
                 disabled={loading}
+                data-testid="login-button"
               >
                 {loading ? "Ingresando..." : "Ingresar"}
               </button>
@@ -110,15 +116,15 @@ const Login = () => {
               <div className={styles.dividerLine}></div>
             </div>
 
-            <div className={styles.registerSection}>
+            <div className={styles.registerSection} data-testid="register-section">
               <p className={styles.registerText}>Don’t have an account?</p>
-              <Link href="/register" className={styles.registerButton}>
+              <Link href="/register" className={styles.registerButton} data-testid="register-link">
                 Registrarse
               </Link>
             </div>
 
             <div className={styles.forgotPassword}>
-              <Link href="/forgot-password" className={styles.forgotPasswordLink}>
+              <Link href="/forgot-password" className={styles.forgotPasswordLink} data-testid="forgot-password-link">
                 Forgot your password?
               </Link>
             </div>

@@ -45,9 +45,7 @@ const Home: FC = () => {
     <div className="container-grid">
       <div className="grid-wraper-left">
         <div className="fix-height">
-         <div className="img_w-h-100-bg_black35">
-
-          </div>
+         <div className="img_w-h-100-bg_black35"></div>
         </div>
       </div>
       <div className="grid-wrapper-right">
