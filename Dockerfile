@@ -1,11 +1,11 @@
 # -------- deps --------
-FROM node:20-alpine AS deps
+FROM node:18-alpine AS deps
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 
 # -------- build --------
-FROM node:20-alpine AS build
+FROM node:18-alpine AS build
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -14,7 +14,7 @@ RUN npm run build
 
 # -------- run (standalone) --------
 # Si usas output: 'standalone', copiamos solo lo mínimo
-FROM node:20-alpine AS runner
+FROM node:18-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 # Copia lo generado por Next standalone
