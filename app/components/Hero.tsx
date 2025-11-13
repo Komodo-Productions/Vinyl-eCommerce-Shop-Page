@@ -19,7 +19,7 @@ export default function HeroSection() {
                                 </div>
                             </div>
                             <div className="subtitle weight-regular">
-                                Explore Handpicked <span className="italic">Vinyl Records</span> That Bring Music to Life: Feel the Warmth of Every Groove and Rediscover Your Favorite Sounds
+                                Explore Handpicked <span className="italic">Vin'yl Records</span> That Bring Music to Life: Feel the Warmth of Every Groove and Rediscover Your Favorite Sounds
                             </div>
                         </div>
                         <div className="hero-row2">
